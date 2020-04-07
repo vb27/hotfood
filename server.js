@@ -24,7 +24,7 @@ app.post("/api/tables", function(req, res) {
   
     console.log(newTable);
   
-    if(tables.length === 5){
+    if(tables.length <= 5){
         tables.push(newTable)
     } else{
         waitlist.push(newTable)
