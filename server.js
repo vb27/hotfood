@@ -21,4 +21,14 @@ app.use(express.json());
 
 // Routes
 // ================================================================
-app.get("/")
+app.get("/", function(req, res){
+    res.sendFile(path.join(__dirname, "home.html"))
+})
+
+app.get("/add", function(req, res){
+    res.sendFile(path.join(__dirname, "add.html"))
+})
+
+app.get("/view", function(req, res){
+    res.send(path.join(__dirname, "view.html"))
+})
