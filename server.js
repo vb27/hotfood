@@ -31,3 +31,7 @@ app.get("/add", function(req, res){
 app.get("/view", function(req, res){
     res.send(path.join(__dirname, "view.html"))
 })
+
+app.get("/api/tables", function(req, res){
+    return res.json(tables)
+})
