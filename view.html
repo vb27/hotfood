@@ -42,9 +42,9 @@
                         <h2 id="name">Table #1</h2>
                         <div id="reservations">
                             <h3><strong>ID:</strong> <span id="unique-id"></span></h3>
-                            <h3><strong>Name:</strong> <span id="name">900</span></h3>
-                            <h3><strong>Email:</strong> <span id="email">2000</span></h3>
-                            <h3><strong>Phone:</strong> <span id="phone-num">2000</span></h3>
+                            <h3><strong>Name:</strong> <span id="name"></span></h3>
+                            <h3><strong>Email:</strong> <span id="email"></span></h3>
+                            <h3><strong>Phone:</strong> <span id="phone-num"></span></h3>
                             
                         </div>
                     </div>
@@ -55,30 +55,30 @@
 
     <script type="text/javascript">
         $("#search-btn").on("click", function () {
-            var searchedCharacter = $("#character-search").val().trim();
+            var newTables = $("#character-search").val().trim();
 
             // Using a RegEx Pattern to remove spaces from searchedCharacter
             // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-            searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
+           newTables = newTables.replace(/\s+/g, "").toLowerCase();
 
-            $.get("/api/characters/" + searchedCharacter, function (data) {
+            $.get("/api/tables/" + newTables, function (data) {
                 console.log(data);
                 if (data) {
-                    $("#reservation").show();
+                    $("#reservations").show();
                     $("#unique-id").text(data.id);
                     $("#name").text(data.name);
                     $("#email").text(data.email);
-                    $("#phone-num").text(data.phonenum);
+                    $("#phone-num").text(data.phoneNum);
                 } else {
                     $("#name").text(
-                        "The force is not strong with this one. Your character was not found.");
+                        "The reservation was not found.");
                     $("#stats").hide();
                 }
             });
         });
     </script>
 </body>
-<a href="home.html">Back</a>
+<a href=/home>Back</a>
 </body>
 
 </html>
