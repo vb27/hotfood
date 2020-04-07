@@ -12,6 +12,26 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const tables = [];
+const waitlist = [];
+
+app.post("/api/tables", function(req, res) {
+    // req.body hosts is equal to the JSON post sent from the user
+    // This works because of our body parsing middleware
+    var newTable = req.body;
+  
+    newTable.routeName = newTable.name
+  
+    console.log(newTable);
+  
+    if(tables.length <= 5){
+        tables.push(newTable)
+    } else{
+        waitlist.push(newTable)
+    }
+    res.json(newTable);
+  });
+
 
 
 
@@ -29,5 +49,13 @@ app.get("/add", function(req, res){
 })
 
 app.get("/view", function(req, res){
-    res.send(path.join(__dirname, "view.html"))
+    res.sendFile(path.join(__dirname, "view.html"))
+})
+
+app.get("/api/tables", function(req, res){
+    return res.json(tables)
+})
+
+app.listen(PORT, function(){
+    console.log("App listening on PORT " + PORT)
 })
